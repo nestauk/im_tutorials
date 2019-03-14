@@ -3,3 +3,7 @@ def chunks(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]
 
+
+def flatten_lists(lst):
+    """Remove nested lists."""
+    return [item for sublist in lst for item in sublist]
