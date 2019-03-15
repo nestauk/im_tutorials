@@ -7,19 +7,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 class WrapTSNE():
 
-    def doc_vector_finder(self, ids, doc_vectors):
-        """Find the N-dimensional vector of each word.
-
-        Args:
-            w2v: Trained word2vec model.
-
-        Return:
-            token_vectors (dict): Dictionary where keys are the tokens and
-                values the N-dim vectors.
-
-        """
-        return {id_: doc_vector for id_, doc_vector in zip(ids, doc_vectors)}
-
     def vectors2sparse_matrix(self, vectors):
         """Transform a vector to a sparse matrix.
 
@@ -31,24 +18,6 @@ class WrapTSNE():
 
         """
         return scipy.sparse.csr_matrix(vectors, dtype='double')
-
-    def unravel_dictionary(self, token_vectors):
-        """Extract the values of a dictionary.
-
-        Args:
-            token_vectors (dict): Dictionary where keys are the tokens and
-                values the N-dim vectors.
-
-        Return:
-            dict_keys (list, str): The keys of a dictionary.
-            dict_values (array, float): The values of a dictionary in a Numpy
-                array.
-
-        """
-        dict_keys = list(token_vectors.keys())
-        dict_values = np.array(list(token_vectors.values()))
-
-        return dict_keys, dict_values
 
     def calculate_cosine_similarity(self, sparse_matrix):
         """Calculate the cosine similarity of a sparse matrix."""
@@ -82,11 +51,9 @@ class WrapTSNE():
                                               self.vectors2sparse_matrix(
                                                 vectors)))
 
-    def reduce_dimensions(self, ids, doc_vectors, n_iter=1500, perplexity=50):
+    def reduce_dimensions(self, doc_vectors, n_iter=1500, perplexity=50):
         """Wrapper function that transforms word vectors to 2D."""
-        dict_keys, dict_values = self.unravel_dictionary(
-                                  self.doc_vector_finder(ids, doc_vectors))
-        cos_dist = self.cos_dis(dict_values)
+        cos_dist = self.cos_dis(doc_vectors)
         tsne = TSNE(n_components=2, random_state=0, verbose=1, n_iter=n_iter,
                     perplexity=perplexity, metric='precomputed')
         return tsne.fit_transform(cos_dist)

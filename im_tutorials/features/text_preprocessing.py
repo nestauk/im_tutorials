@@ -72,13 +72,14 @@ def build_ngrams(documents, n=2, **kwargs):
     else:
         level = kwargs["level"]
     # Generate sentences, as required for gensim Phrases
-    sentences = []
-    for doc in documents:
-        sentences += doc
+    # sentences = []
+    # for doc in documents:
+    #     sentences += doc
     # Get the bigrams
-    phrases = gensim.models.Phrases(sentences, min_count=2, delimiter=b'_')
+    phrases = gensim.models.Phrases(documents,  min_count=2, threshold=1,
+                                    delimiter=b'_')
     bigram = gensim.models.phrases.Phraser(phrases)
-    docs_bi = [[bigram[sentence] for sentence in doc] for doc in documents]
+    docs_bi = [bigram[doc] for doc in documents]
     # If finished
     if level == n:
         return docs_bi

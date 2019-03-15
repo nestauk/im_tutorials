@@ -7,4 +7,4 @@ def document_vector(word2vec_model, doc):
     if doc:
         return np.mean(word2vec_model[doc], axis=0)
     else:
-        return np.zeros((1, len(doc)))
+        return np.zeros(word2vec_model.trainables.layer1_size,)
