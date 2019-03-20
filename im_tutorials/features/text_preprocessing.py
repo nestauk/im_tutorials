@@ -3,6 +3,7 @@ import nltk
 import string
 import gensim
 from nltk.corpus import stopwords
+nltk.download('stopwords')
 
 stop_words = set(stopwords.words('english') +
                  list(string.punctuation) +
