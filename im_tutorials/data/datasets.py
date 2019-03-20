@@ -1,6 +1,8 @@
 import ast
 import smart_open
 
+import pandas as pd
+
 def eval_cols(cols):
     '''eval_cols
     Returns a dictionary to convert columns with ast.literal_eval when reading
