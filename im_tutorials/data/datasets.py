@@ -24,7 +24,7 @@ def gateway_to_research_projects():
     gtr_projects_key='gateway-to-research/gtr_projects.csv'
     list_cols = ['research_topics', 'research_subjects']
     gtr_projects_df = pd.read_csv(
-        smart_open.smart_open(f'https://s3.us-east-2.amazonaws.com/{bucket}/{gtr_projects_key}'),
+        smart_open.smart_open("https://s3.us-east-2.amazonaws.com/{}/{}".format(bucket, gtr_projects_key)),
         converters=eval_cols(list_cols),
         index_col=0
     )
@@ -36,22 +36,22 @@ def double_eval(x):
 def arxiv_papers(year=2017):
     '''arxiv_papers
     Get arXiv papers csv for a single year and return as dataframe.
-    
+
     Args:
         year (`int`): Year of the dataset.
     Returns:
         arxiv_df (`pd.DataFrame`): Parsed dataframe of arXiv papers.
     '''
     bucket='innovation-mapping-tutorials'
-    key=f'arxiv_{year}/arxiv_{year}.csv'
+    key='arxiv_{}/arxiv_{}.csv'.format(year, year)
     arxiv_df = pd.read_csv(
-        smart_open.smart_open(f'https://s3.us-east-2.amazonaws.com/{bucket}/{key}'),
+        smart_open.smart_open('https://s3.us-east-2.amazonaws.com/{}/{}'.format(bucket, key)),
         index_col=0,
         converters={
             'authors': double_eval,
         },
-        parse_dates=['created'], 
+        parse_dates=['created'],
     )
     arxiv_df['year_created'] = arxiv_df['created'].dt.year
-    arxiv_df['category_ids'] = arxiv_df['category_ids'].str.split(',') 
+    arxiv_df['category_ids'] = arxiv_df['category_ids'].str.split(',')
     return arxiv_df

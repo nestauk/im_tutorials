@@ -7,19 +7,19 @@ def chunks(l, n):
         yield l[i:i + n]
 
 def print_counter_most_common(counter, n, name='Item', padding=30, stats=True):
-    print(f'{name:<padding}Frequency')
+    print('{}\tFrequency'.format(name))
     for item, count in counter.most_common(n):
-            print(f'{item:<padding}{count}')
+            print('{}\t{}'.format(item, count))
 
     if stats:
         vals = counter.values()
         lo = np.percentile(vals, 25)
         med = np.median(vals)
         up = np.percentile(vals, 75)
-        print(f'\nLower Quartile: {lo}')
-        print(f'Median:           {med}')
-        print(f'Upper Quartile:   {up}')
-        print(f'Upper Quartile:   {up}')
+        print('\nLower Quartile: {}'.format(lo))
+        print('Median:           {}'.format(med))
+        print('Upper Quartile:   {}'.format(up))
+        # print('Upper Quartile:   {}')
 
 def flatten_lists(l):
     '''flatten_lists
