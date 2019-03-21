@@ -15,8 +15,8 @@ def country_basic_info():
        'population', 'region', 'regionalBlocs', 'subregion', 'timezones',
        'topLevelDomain', 'translations' 
     '''
-    key = 'gis/countries_restcountries_api.json'
-    df = pd.read_json(
+    key = 'gis/countries_basic.csv'
+    df = pd.read_csv(
             smart_open(S3_PATH.format(key))
             )
     df['lat'] = [l[0] if len(l) == 2 else np.nan for l in df['latlng']]
