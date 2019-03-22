@@ -39,6 +39,7 @@ def _reports_h2020_fp6(key):
         parse_dates=['lastUpdateDate'],
         infer_datetime_format=True,
     )
+    df['lastUpdatedDateYear'] = df['lastUpdateDate'].dt.year
     return df
 
 def h2020_projects():

@@ -22,10 +22,12 @@ def meetups(country='europe'):
         'lon', 'members', 'name', 'timestamp', 'topics', 'urlkey', 'urlname',
         'year', 'topic_names'
     '''
+    list_cols = ['name', 'urlkey']
     key = 'meetup/meetups_{}.csv'.format(country)
     df = pd.read_csv(
             smart_open(S3_PATH.format(key)),
             converters={'topics': ast.literal_eval}
             )
-    df['topic_names'] = df['topics'].apply(_parse_meetup_topics)
+    for col in list_cols:
+        df[col] = df[col].str.split(',')
     return df

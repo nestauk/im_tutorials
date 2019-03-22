@@ -20,6 +20,7 @@ def country_basic_info():
     eval_cols = [
             'altSpellings', 'altSpellings', 'callingCodes', 'currencies',
             'regionalBlocs', 'timezones', 'translations', 'latlng', 'languages',
+            'borders', 
             ]
     df = pd.read_csv(
             smart_open(S3_PATH.format(key)),
