@@ -1,7 +1,17 @@
 import boto3
 import io
+import smart_open
+import pickle
 
-def download_file_s3(client, bucket, file):
+
+def load_df_pkl(bucket, key):
+    url = "https://s3.us-east-2.amazonaws.com/{}/{}".format(
+            bucket, key)
+    with smart_open.open(url, 'rb') as f:
+        df = pickle.loads(f.read())
+    return df
+
+def download_file_s3(bucket, file):
     '''download_file_s3
     Downloads a file from S3 and reads it.
 
@@ -13,8 +23,9 @@ def download_file_s3(client, bucket, file):
     Returns:
         (:obj:`io.BytesIO`): File object
     '''
-    obj = client.get_object(Bucket=bucket, Key=file['Key'])
-    return io.BytesIO(obj['Body'].read())
+    s3 = boto3.resource('s3')
+    obj = s3.Object(bucket, file)
+    return obj.get()['Body'].read()
 
 def get_files_from_s3(bucket, folder, key_prefix=''):
     '''get_files_from_s3
