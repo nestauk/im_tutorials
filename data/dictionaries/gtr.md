@@ -17,10 +17,13 @@ Tables available from Gateway to Research. Funders include AHRC, BBSRC, EPSRC, E
 
 A sample dataset of Gateway to Research projects with some metadata.
 
-```python from im_tutorials.data.gtr import gtr_sample
+```python 
+from im_tutorials.data.gtr import gtr_sample 
 gtr_project_sample_df = gtr_sample()
-```
-This dataset contains basic information about the content, year and funder of a project in Gateway to Research.
+``` 
+
+This dataset contains basic information about the content, year and funder of
+a project in Gateway to Research.
 
 - **`project_id`** `(string)`: A URL with a unique ID for the project. The URL links to an XML representation of the project on GtR 
 - **`start_year`** `(int)`: The year that the project began. Minimum value of 1975 and maximum of 2019.
@@ -38,7 +41,8 @@ Funding amounts and types.
 
 :warning: The fund dates range from start dates in 1975 and end dates in 2121. This may be due to errors. The majority of funds are between 2006 and 2018.
 
-```python from im_tutorials.data.gtr import gtr_table
+```python 
+from im_tutorials.data.gtr import gtr_table
 gtr_fund_df = gtr_table('funds')
 ```
 
@@ -54,7 +58,8 @@ gtr_fund_df = gtr_table('funds')
  
 Research organisation information.
 
-```python from im_tutorials.data.gtr import gtr_table
+```python 
+from im_tutorials.data.gtr import gtr_table
 gtr_org_df = gtr_table('organisations')
 ```
 
@@ -67,7 +72,8 @@ gtr_org_df = gtr_table('organisations')
  
 Research organisation locations.
 
-```python from im_tutorials.data.gtr import gtr_table
+```python 
+from im_tutorials.data.gtr import gtr_table
 gtr_org_loc_df = gtr_table('organisation_locations')
 ```
 
@@ -85,7 +91,8 @@ gtr_org_loc_df = gtr_table('organisation_locations')
 
 There are many tables for outcomes from Gateway to Research projects, each with their own fields.
 
-```python from im_tutorials.data.gtr import gtr_table
+```python 
+from im_tutorials.data.gtr import gtr_table
 gtr_outcome_df = gtr_table(<outcome table name>)
 ```
 
@@ -111,7 +118,8 @@ The table names available are:
 
 Project-organisation participation information.
 
-```python from im_tutorials.data.gtr import gtr_table
+```python 
+from im_tutorials.data.gtr import gtr_table
 gtr_participant_df = gtr_table('participant')
 ```
 
@@ -125,7 +133,8 @@ gtr_participant_df = gtr_table('participant')
 
 Researchers involved in projects, e.g. PIs, students and collaborators.
 
-```python from im_tutorials.data.gtr import gtr_table
+```python 
+from im_tutorials.data.gtr import gtr_table
 gtr_ppl_df = gtr_table('persons')
 ```
 
@@ -138,7 +147,8 @@ gtr_ppl_df = gtr_table('persons')
 
 Basic project information.
 
-```python from im_tutorials.data.gtr import gtr_table
+```python 
+from im_tutorials.data.gtr import gtr_table
 gtr_project_df = gtr_table('projects')
 ```
 
@@ -164,7 +174,8 @@ Many projects in GtR are tagged with research topics. There are three categories
 - Subject: Less granular (~90) research categories.
 - Activity: Medical research categories (~50).
 
-```python from im_tutorials.data.gtr import gtr_table
+```python 
+from im_tutorials.data.gtr import gtr_table
 gtr_topic_df = gtr_table('topic')
 ```
 
@@ -177,7 +188,8 @@ gtr_topic_df = gtr_table('topic')
 
 There are link tables which can be used to link many of the entities above to projects. This is a many to many mapping table that has been broken down in to parts that can map a particular table to the project table.
 
-```python from im_tutorials.data.gtr import gtr_link_table
+```python 
+from im_tutorials.data.gtr import gtr_link_table
 gtr_link_df = gtr_link_table(<link table name>)
 ```
 
