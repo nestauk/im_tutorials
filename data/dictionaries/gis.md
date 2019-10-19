@@ -2,11 +2,12 @@
 
 Small datasets containing useful geographic information.
 
-## Basic Country Info
+### Basic Country Info
 
 ```python from im_tutorials.data import gis
 
-country_df = gis.country_basic_info() ```
+country_df = gis.country_basic_info() 
+```
 
 A table of basic information about countries.
 

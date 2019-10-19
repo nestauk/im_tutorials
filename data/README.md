@@ -4,13 +4,13 @@ For information relating to datasets that can be downloaded with the
 `im_tutorials` package, please see the data dictionaries. Otherwise, this is an empty directory to store data locally when working on
 projects or modifying tutorials.
 
-## Datasets
-
 The information for each dataset consists of:
 
 - short description
 - code snippet to load the dataset
 - breakdown of the data fields
+
+## Datasets
 
 - [ArXiv](dictionaries/arxiv.md) - Articles, metadata and more from arXiv, the preprint repository.
 - [CORDIS](dictionaries/cordis.md) - EU funded research and innovation projects.

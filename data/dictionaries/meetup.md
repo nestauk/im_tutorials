@@ -2,13 +2,14 @@
 
 Data from [meetup.com](https://meetup.com). 
 
-## Meetup Groups
+### Meetup Groups
 
 Mostly tech focused meetups from the EU and US.
 
 ```python from im_tutorials.data import meetup
 
-meetup_groups_df = meetup.meetups() ```
+meetup_groups_df = meetup.meetups()
+```
 
 - **`category`** (`int`):
 - **`category_id`** (`int`)
