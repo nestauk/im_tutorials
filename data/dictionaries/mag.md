@@ -4,7 +4,7 @@ Tables available from Microsoft Academic Graph. MAG is a large graph database co
 
  - [Fields of Study](#fields-of-study) 
 
-### Aliases
+### Fields of Study
 
 Microsoft Academic Graph is enriched with a field of study taxonomy, covering research disciplines and topics. It is hierarchical, and contains over 600,000 entities.
  
