@@ -19,6 +19,7 @@ The information for each dataset consists of:
 - [GRID](dictionaries/grid.md) - Information from the Global Research Identifier Database.
 - [IPO Patents](dictionaries/ons.md) - A sample of UK patents.
 - [Meetup](dictionaries/meetup.md) - Tech meetups from Europe and the US.
+- [Microsoft Academic Graph](dictionaries/mag.md) - A graph of academic publications, authors and research topics.
 - [UN Sustainable Development Goals](dictionaries/sdg.md) - Texts about sustainable development goal activities.
 - [World Report](dictionaries/world_report.md) - Health research projects from multiple funding bodies, from the World Report app.
 
