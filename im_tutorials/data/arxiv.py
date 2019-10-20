@@ -49,7 +49,7 @@ def arxiv_articles(chunk=None):
     DataFrame
         A dataframe from a single chunk.
     '''
-    if chunk is not None:
+    if chunk is None:
         for i in range(16):
             key = f'{folder}/arxiv_articles_{i:02}.pkl.bz2'
             yield load_df_pkl(bucket, key)
