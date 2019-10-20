@@ -1,10 +1,13 @@
 import pandas as pd
+import smart_open
+import ast
 
 from im_tutorials.data.s3_transfer import load_df_pkl
 
 
 bucket = 'innovation-mapping-tutorials'
 folder = 'cordis/mysql'
+S3_PATH = 'https://s3.us-east-2.amazonaws.com/innovation-mapping-tutorials/{}'
 
 def cordis_table(table):
     '''cordis_table
@@ -46,25 +49,25 @@ def cordis_table_list():
         ]
     return d
 
-# def _projects_h2020_fp6(key):
-#     file_path = S3_PATH.format(key)
-#     df = pd.read_csv(
-#         smart_open(file_path),
-#         sep=';',
-#         encoding='iso-8859-1',
-#         parse_dates=['startDate', 'endDate'],
-#         infer_datetime_format=True,
-#         decimal=','
-#     )
-#     df['organisations'] = (df['coordinator'] + ';' +  df['participants']).fillna(df['coordinator'])
-#     df['countries'] = (df['coordinatorCountry'] + ';' +  df['participantCountries']).fillna(df['coordinatorCountry'])
-#     list_cols = ['organisations', 'countries', 'participants', 'participantCountries', 'programme']
-#     for col in list_cols:
-#         df[col] = df[col].str.split(';')
-# 
-#     df['startYear'] = df['startDate'].dt.year
-#     df['endYear'] = df['endDate'].dt.year
-#     return df
+def _projects_h2020_fp6(key):
+    file_path = S3_PATH.format(key)
+    df = pd.read_csv(
+        smart_open.open(file_path),
+        sep=';',
+        encoding='iso-8859-1',
+        parse_dates=['startDate', 'endDate'],
+        infer_datetime_format=True,
+        decimal=','
+    )
+    df['organisations'] = (df['coordinator'] + ';' +  df['participants']).fillna(df['coordinator'])
+    df['countries'] = (df['coordinatorCountry'] + ';' +  df['participantCountries']).fillna(df['coordinatorCountry'])
+    list_cols = ['organisations', 'countries', 'participants', 'participantCountries', 'programme']
+    for col in list_cols:
+        df[col] = df[col].str.split(';')
+
+    df['startYear'] = df['startDate'].dt.year
+    df['endYear'] = df['endDate'].dt.year
+    return df
 # 
 # def _organizations_h2020_fp6(key):
 #     df = pd.read_csv(
@@ -84,9 +87,9 @@ def cordis_table_list():
 #     df['lastUpdatedDateYear'] = df['lastUpdateDate'].dt.year
 #     return df
 # 
-# def h2020_projects():
-#     key = 'cordis/h2020/cordis-h2020projects.csv'
-#     return _projects_h2020_fp6(key)
+def h2020_projects():
+    key = 'cordis/h2020/cordis-h2020projects.csv'
+    return _projects_h2020_fp6(key)
 # 
 # def fp7_projects():
 #     key = 'cordis/fp7/cordis-fp7projects.csv'
