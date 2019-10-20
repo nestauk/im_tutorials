@@ -4,7 +4,7 @@ from im_tutorials.data.s3_transfer import load_df_pkl
 
 
 bucket = 'innovation-mapping-tutorials'
-folder = 'cordis'
+folder = 'cordis/mysql'
 
 def cordis_table(table):
     '''cordis_table
