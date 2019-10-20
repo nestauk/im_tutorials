@@ -3,9 +3,61 @@ import smart_open
 import pandas as pd
 
 from im_tutorials.utilities import eval_cols, double_eval
+from im_tutorials.data.s3_transfer import load_df_pkl
 
+bucket = 'innovation-mapping-tutorials'
+folder = 'arxiv'
 
-def arxiv_papers(year=2017):
+def arxiv_table(table):
+    '''arxiv_table
+    Get a list of 
+    Parameters
+    ----------
+    table : str
+        Name of the ArXiv table to load. Tables available include:
+            - article_categories
+            - article_corex_topics
+            - article_fields_of_study
+            - article_institutes
+            - categories
+            - corex_topics
+    Returns
+    -------
+    DataFrame
+        A dataframe with containing the ArXiv table data.
+    '''
+    key=f'{folder}/arxiv_{table}.pkl.bz2'
+    return load_df_pkl(bucket, key)
+
+def arxiv_articles(chunk=None):
+    '''arxiv_articles
+    Get ArXiv article data chunks.
+
+    Parameters
+    ----------
+    chunk : int
+        Specify a particular chunk of data to download. There are 17
+        chunks numbered 0 through 16.
+    
+    Returns
+    -------
+    generator
+        A generator that returns ArXiv articles in chunks of 100,000
+    
+    or
+
+    DataFrame
+        A dataframe from a single chunk.
+    '''
+    if chunk is not None:
+        for i in range(16):
+            key = f'{folder}/arxiv_articles_{i:02}.pkl.bz2'
+            yield load_df_pkl(bucket, key)
+    else:
+        key = f'{folder}/arxiv_articles_{chunk:02}.pkl.bz2'
+        return load_df_pkl(bucket, key)
+
+def arxiv_sample_2017():
     '''arxiv_papers
     Get arXiv papers csv for a single year and return as dataframe.
 
@@ -14,6 +66,7 @@ def arxiv_papers(year=2017):
     Returns:
         arxiv_df (`pd.DataFrame`): Parsed dataframe of arXiv papers.
     '''
+    year = 2017
     bucket='innovation-mapping-tutorials'
     key='arxiv_{}/arxiv_{}.csv'.format(year, year)
     arxiv_df = pd.read_csv(
