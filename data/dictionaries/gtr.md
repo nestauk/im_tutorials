@@ -73,9 +73,8 @@ gtr_org_df = gtr_table('organisations')
 Research organisation locations.
 
 ```python 
-from im_tutorials.data.gtr import gtr_table
-gtr_org_loc_df = gtr_table('organisation_locations')
-```
+from im_tutorials.data.gtr import gtr_table gtr_org_loc_df
+= gtr_table('organisations_locations') ```
 
 - **`id`** `(string)`: Org ID.
 - **`country_name`** `(string)`:
